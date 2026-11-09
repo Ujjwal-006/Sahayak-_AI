@@ -1,0 +1,68 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Builds
+build/
+dist/
+out/
+*.tsbuildinfo
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+prisma/*.db
+prisma/dev/
+*.db-journal
+*.db-shm
+*.db-wal
+
+# Large audio sample files (96 MB) - transcript.json is kept
+*.wav
+*.mp3
+*.aac
+*.flac
+
+# Binaries
+*.exe
+*.dll
+
+# Archives / extracted junk
+extracted_archive/
+*.zip
+*.7z
+
+# OS junk
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# IDE / editors
+.vscode/
+.idea/
+*.swp
+*.swo
+.npm/
+.yarn/

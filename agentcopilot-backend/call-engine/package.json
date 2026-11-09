@@ -1,0 +1,24 @@
+{
+  "name": "call-engine",
+  "version": "1.0.0",
+  "description": "AgentCopilot CallEngine - Real-time call orchestration with Gnani AI & LLM",
+  "main": "index.ts",
+  "scripts": {
+    "start": "tsx index.ts",
+    "dev": "tsx watch index.ts",
+    "transcribe-samples": "tsx transcribe-samples.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.4",
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.4",
+    "@types/ws": "^8.5.14",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}

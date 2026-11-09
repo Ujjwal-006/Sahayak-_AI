@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Org {
+  id            String     @id @default(cuid())
+  name          String
+  slug          String     @unique
+  plan          String     @default("GROWTH")
+  seats         Int        @default(10)
+  qaCallsIncl   Int        @default(5000)
+  createdAt     DateTime   @default(now())
+  users         User[]
+  calls         Call[]
+  auditLogs     AuditLog[]
+}
+
+model User {
+  id           String    @id @default(cuid())
+  orgId        String
+  org          Org       @relation(fields: [orgId], references: [id])
+  email        String    @unique
+  passwordHash String
+  name         String
+  role         String    @default("AGENT") // ADMIN | COMPLIANCE_OFFICER | AGENT
+  status       String    @default("ACTIVE")
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+}
+
+model Call {
+  id              String    @id @default(cuid())
+  orgId           String
+  org             Org       @relation(fields: [orgId], references: [id])
+  externalCallId  String    @unique
+  agentUserId     String?
+  startedAt       DateTime
+  endedAt         DateTime?
+  durationS       Float?
+  talkListenRatio Float?
+  deadAirPct      Float?
+  complianceScore Float?
+  sentimentFrom   String?
+  sentimentTo     String?
+  disposition     String?
+  escalated       Boolean   @default(false)
+  language        String?
+  transcriptJson  String?
+  crmPrefillJson  String?
+  createdAt       DateTime  @default(now())
+
+  @@index([orgId, startedAt])
+}
+
+model AuditLog {
+  id           String   @id @default(cuid())
+  orgId        String
+  org          Org      @relation(fields: [orgId], references: [id])
+  actorUserId  String?
+  action       String
+  targetType   String?
+  targetId     String?
+  metadataJson String?
+  ipAddr       String?
+  userAgent    String?
+  createdAt    DateTime @default(now())
+
+  @@index([orgId, createdAt])
+}
+

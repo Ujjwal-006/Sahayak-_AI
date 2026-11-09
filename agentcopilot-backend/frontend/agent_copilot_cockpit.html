@@ -1,0 +1,1351 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{width:8px;height:8px;}::-webkit-scrollbar-track{background:#e5e2db;}::-webkit-scrollbar-thumb{background:#464741;border-radius:2px;}</style><script src="https://cdn.tailwindcss.com"></script><script src="/socket.io.min.js"></script><script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{gridTemplateColumns:{"24":"repeat(24, minmax(0,1fr))"},colors:{"primary-fixed":"#e5e2de","surface-bright":"#fcf9f2","primary":"#040404","tertiary":"#0c0300","on-surface-variant":"#464741","surface-container":"#f1eee7","on-secondary-fixed":"#01210f","surface-container-high":"#ebe8e1","surface-container-highest":"#e5e2db","on-error-container":"#93000a","on-secondary-container":"#496a52","on-secondary-fixed-variant":"#2e4e37","secondary-fixed":"#c7ecce","error-container":"#ffdad6","surface":"#fcf9f2","on-secondary":"#ffffff","surface-dim":"#dcdad3","outline":"#777771","inverse-primary":"#c8c6c3","on-primary-fixed-variant":"#474744","on-primary-fixed":"#1c1c1a","background":"#fcf9f2","surface-container-low":"#f6f3ec","surface-tint":"#5f5e5c","on-background":"#1c1c18","on-tertiary-fixed-variant":"#713700","tertiary-fixed-dim":"#ffb785","surface-container-lowest":"#ffffff","secondary-container":"#c4e9cb","secondary-fixed-dim":"#abcfb2","secondary":"#45664e","surface-variant":"#e5e2db","tertiary-container":"#341600","primary-container":"#1e1e1c","on-tertiary-fixed":"#301400","on-surface":"#1c1c18","error":"#ba1a1a","inverse-surface":"#31312c","on-error":"#ffffff","on-tertiary":"#ffffff","tertiary-fixed":"#ffdcc6","inverse-on-surface":"#f3f0e9","on-primary":"#ffffff","outline-variant":"#c7c7bf","on-tertiary-container":"#cc6d19","on-primary-container":"#878683","primary-fixed-dim":"#c8c6c3"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"space-md":"1rem","space-xl":"2.5rem","gutter":"1rem","margin":"1rem","space-sm":"0.5rem","space-xs":"0.25rem","space-lg":"1.5rem","margin-desktop":"2rem","gutter-desktop":"1.5rem"},fontFamily:{"telemetry-dense":["Space Mono"],"label-sm":["Space Mono"],"headline-lg":["Space Grotesk"],"headline-xl":["Space Grotesk"],"headline-xl-mobile":["Space Grotesk"],"telemetry-readout":["Space Mono"],"label-md":["Space Mono"],"body-lg":["Space Grotesk"],"headline-lg-mobile":["Space Grotesk"],"body-sm":["Space Grotesk"],"body-md":["Space Grotesk"],"label-lg":["Space Mono"],"headline-md":["Space Grotesk"]},fontSize:{"telemetry-dense":["11px",{"lineHeight":"14px","letterSpacing":"0em","fontWeight":"400"}],"label-sm":["10px",{"lineHeight":"14px","letterSpacing":"0.12em","fontWeight":"700"}],"headline-lg":["24px",{"lineHeight":"28px","letterSpacing":"-0.01em","fontWeight":"700"}],"headline-xl":["36px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],"headline-xl-mobile":["26px",{"lineHeight":"32px","letterSpacing":"-0.02em","fontWeight":"700"}],"telemetry-readout":["14px",{"lineHeight":"20px","letterSpacing":"-0.02em","fontWeight":"400"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.1em","fontWeight":"700"}],"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"headline-lg-mobile":["20px",{"lineHeight":"24px","letterSpacing":"-0.01em","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"16px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],"label-lg":["14px",{"lineHeight":"18px","letterSpacing":"0.08em","fontWeight":"700"}],"headline-md":["18px",{"lineHeight":"22px","letterSpacing":"0em","fontWeight":"600"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface"><header class="fixed top-0 left-0 right-0 z-50 bg-surface flex flex-col"><div class="h-7 w-full bg-surface-container-high border-b border-primary px-margin flex items-center justify-between font-label-sm text-label-sm"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><div id="socket-relay-dot" class="w-2 h-2 bg-secondary border border-primary animate-pulse"></div><span id="socket-relay-status" class="font-label-sm text-label-sm text-on-surface uppercase">SYS_RELAY: CONNECTING...</span></div><span class="text-outline">|</span><span class="text-outline hidden md:inline">GNANI AI PRISMA + TIMBRE &bull; GEMINI 3.5 FLASH Lite </span></div><div class="flex items-center gap-space-md"><span class="text-outline hidden lg:inline">|</span><div class="flex items-center gap-space-xs"><div class="w-2 h-2 bg-tertiary-fixed-dim border border-primary"></div><span class="font-label-sm text-label-sm text-on-surface uppercase">MONITORING ACTIVE</span></div><button class="bg-surface-container border border-primary px-space-xs py-0 text-label-sm font-label-sm text-on-surface shadow-[1px_1px_0px_#1e1e1c] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none uppercase cursor-pointer" type="button" onclick="navigate('/auth-terminal')">LOGOUT</button></div></div><div class="h-15 w-full bg-surface-container-lowest border-b border-primary px-margin flex items-center justify-between"><div class="flex items-center gap-space-md"><div class="w-8 h-8 bg-primary text-on-primary flex items-center justify-center font-label-lg text-label-lg font-bold shadow-[1px_1px_0px_#1e1e1c]">VX</div><div class="flex flex-col"><div class="font-headline-md text-headline-md font-bold tracking-tight text-primary leading-none">VOXRELAY MODEL 770-LAB</div><div class="font-label-sm text-label-sm text-on-surface-variant tracking-wider uppercase mt-space-xs">AGENTCOPILOT NEURAL COCKPIT</div></div></div><div class="hidden xl:flex items-center gap-space-lg font-label-sm text-label-sm border-l border-r border-primary px-space-md"><div class="flex flex-col"><span class="text-outline uppercase text-[9px]">CALL DURATION</span><span class="font-telemetry-readout text-telemetry-readout font-bold text-error leading-none" id="call-timer">00:00:00.0</span></div><div class="flex flex-col"><span class="text-outline uppercase text-[9px]">CALLER ID / CRM REF</span><span class="font-telemetry-readout text-telemetry-readout text-on-surface leading-none" id="header-caller-id">+91 ••••• ••210 [Rajesh Sharma]</span></div><div class="flex flex-col"><span class="text-outline uppercase text-[9px]">INFERRED INTENT</span><span class="font-label-sm text-label-sm bg-surface-container-high border border-primary px-space-xs text-on-surface" id="header-intent">IDLE_AWAITING_CALL</span></div></div><div class="flex items-center gap-space-md"><div class="hidden sm:flex flex-col text-right font-label-sm text-label-sm"><span class="text-outline uppercase text-[9px]">OPERATOR</span><span class="text-on-surface font-bold">PRIYA SHARMA / AGT_01</span></div><div class="w-8 h-8 bg-primary flex items-center justify-center border border-primary shadow-[1px_1px_0px_#1e1e1c]"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><aside class="fixed left-0 top-22 bottom-0 w-64 bg-surface-container border-r border-primary z-40 flex flex-col justify-between"><div class="flex flex-col"><div class="bg-primary text-on-primary px-space-md py-space-xs font-label-sm text-label-sm tracking-widest uppercase flex items-center justify-between"><span class="">PROGRAM SELECT</span><span class="font-telemetry-dense text-telemetry-dense text-outline-variant">PORT 3003</span></div><nav class="flex flex-col p-space-sm gap-space-xs"><a aria-current="page" class="flex items-center px-space-md py-space-sm border border-primary active:translate-x-[1px] active:translate-y-[1px] uppercase transition-none bg-primary text-on-primary font-bold shadow-[1px_1px_0px_#1e1e1c] cursor-pointer" data-path="cockpit" href="/cockpit" onclick="navigate('/cockpit'); return false;"><span class="text-outline mr-space-sm">[01]</span>COCKPIT</a><a class="flex items-center px-space-md py-space-sm border border-primary bg-surface font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface shadow-[1px_1px_0px_#1e1e1c] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none uppercase transition-none cursor-pointer" data-path="supervisor-dashboard" href="/supervisor" onclick="navigate('/supervisor'); return false;"><span class="text-outline mr-space-sm">[02]</span>SUPERVISOR DASHBOARD</a></nav></div><div class="p-space-sm border-t border-primary bg-surface-container-low flex flex-col gap-space-xs font-label-sm text-label-sm"><div class="flex justify-between items-center text-outline text-[10px]"><span class="">HARDWARE CHASSIS</span><span class="">SER. 770-984-L</span></div><div class="bg-surface-container-highest border border-primary p-space-xs font-telemetry-dense text-telemetry-dense text-on-surface flex justify-between"><span class="">RELAY CARRIER:</span><span class="font-bold text-secondary" id="sidebar-carrier-status">CONNECTING...</span></div><a class="block text-center border border-primary bg-primary text-on-primary py-space-xs font-label-sm text-label-sm hover:bg-surface-container-highest hover:text-on-surface shadow-[1px_1px_0px_#1e1e1c] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none uppercase transition-none cursor-pointer" data-path="auth-terminal" href="/auth-terminal" onclick="navigate('/auth-terminal'); return false;">[00] AUTH / TERMINAL</a></div></aside><div class="pl-64"><main class="relative pt-22 min-h-screen bg-surface w-full p-margin-desktop"><div class="flex flex-col w-full">
+<!-- LABORATORY TICK TAPE CONTAINER -->
+<div class="flex flex-col w-full bg-surface text-on-surface select-none pb-12 font-body-md">
+<!-- SUB-BANNER / RUNTIME CHASSIS CALIBRATION -->
+<div class="w-full bg-surface-container border-b border-primary flex flex-col mb-4">
+<!-- ROW 1: REALTIME RUNTIME METRICS & CARRIER FREQUENCY -->
+<div class="bg-surface-container-high px-4 py-1.5 border-b border-primary flex flex-wrap items-center justify-between font-label-sm text-label-sm text-on-surface">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 bg-secondary border border-primary inline-block animate-pulse"></span>
+<span class="tracking-widest font-bold" id="call-status-badge">CALL STATE: IDLE</span>
+</div>
+<span class="text-outline">/</span>
+<span class="font-telemetry-dense text-telemetry-dense" id="utc-clock">UTC 16:22:06.214</span>
+<span class="text-outline hidden md:inline">/</span>
+<span class="font-telemetry-dense text-telemetry-dense text-on-surface-variant hidden md:inline" id="call-id-badge">CALL ID: NONE</span>
+<span class="text-outline hidden md:inline">/</span>
+<span class="font-telemetry-dense text-telemetry-dense text-on-surface-variant hidden md:inline" id="sub-caller-id">CALLER: NONE</span>
+<span class="text-outline hidden lg:inline">/</span>
+<span class="font-telemetry-dense text-telemetry-dense hidden lg:inline" id="sub-call-timer">00:00:00.0</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-telemetry-dense text-telemetry-dense hidden lg:inline" id="latency-badge">LATENCY: -- ms</span>
+<span class="text-outline hidden lg:inline">/</span>
+<div class="flex items-center gap-1.5">
+<span class="w-2.5 h-2.5 bg-on-tertiary-container border border-primary inline-block"></span>
+<span class="font-bold">MODE: DEMO + LIVE</span>
+</div>
+<button class="bg-surface-container-lowest border border-primary px-2 py-0.5 font-label-sm text-label-sm shadow-[1px_1px_0px_#1e1e1c] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none uppercase cursor-pointer" id="stream-toggle-btn" onclick="togglePause()">
+  PAUSE STREAM
+</button>
+<button class="bg-primary text-on-primary border border-primary px-3 py-1 font-label-sm text-label-sm font-bold uppercase hover:bg-tertiary active:translate-x-[1px] active:translate-y-[1px] shadow-[2px_2px_0px_#1e1e1c] cursor-pointer flex items-center gap-1.5" id="top-play-sample-btn" onclick="startSampleCall()">
+  <span>▶</span> PLAY DEMO CALL
+</button>
+<button id="top-start-call-btn" class="bg-secondary text-on-secondary border border-primary px-3 py-1 font-label-sm text-label-sm font-bold uppercase hover:bg-secondary-fixed active:translate-x-[1px] active:translate-y-[1px] shadow-[2px_2px_0px_#1e1e1c] cursor-pointer flex items-center gap-1.5" onclick="startLiveCall()">
+  <span>●</span> LIVE MIC
+</button>
+</div>
+</div>
+<!-- ROW 2: ACTIVE SESSION TELEMETRY & CRM BINDING -->
+<div class="bg-surface-container-lowest px-4 py-2 flex flex-wrap items-center justify-between gap-y-2">
+<div class="flex items-center gap-3">
+<div class="w-7 h-7 bg-primary text-surface-bright flex items-center justify-center font-label-lg text-label-lg font-bold shadow-[1px_1px_0px_#1e1e1c]">
+  VX
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md font-bold tracking-tight text-primary">VOXRELAY</span>
+<span class="bg-surface-container border border-primary px-1.5 py-0.2 font-label-sm text-label-sm">MODEL 770-LAB</span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary font-bold">
+  <span class="w-1.5 h-1.5 bg-secondary"></span> STREAM READY
+</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant tracking-wider uppercase">DUAL-ACOUSTIC TELEMETRY &amp; NEURAL AGENT ASSIST</span>
+</div>
+</div>
+<div class="flex items-center gap-6 font-label-sm text-label-sm border-l border-primary pl-4">
+<div class="flex flex-col">
+<span class="text-outline uppercase text-[9px]">DISPOSITION PREVIEW</span>
+<span class="font-telemetry-dense text-telemetry-dense font-bold text-primary" id="disp-preview">Card Services &rarr; Unblock</span>
+</div>
+<div class="flex flex-col hidden sm:flex">
+<span class="text-outline uppercase text-[9px]">COMPLIANCE SCORE</span>
+<span class="font-telemetry-readout font-bold text-secondary text-[16px]" id="cockpit-compliance-score">100%</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- MAIN CONSOLE RACK (5/4/3 GRID SPLIT) -->
+<div class="grid grid-cols-12 gap-4 w-full">
+<!-- ======================================================== -->
+<!-- CONSOLE 01: ACOUSTIC TELEMETRY & REALTIME FEED (5 COLS) -->
+<!-- ======================================================== -->
+<section class="col-span-12 lg:col-span-5 flex flex-col gap-4">
+<!-- ACOUSTIC DUAL VU DECIBEL MONITOR -->
+<div class="bg-surface-container-lowest border border-primary p-3 shadow-[1px_1px_0px_#1e1e1c] flex flex-col gap-2">
+<div class="bg-primary text-on-primary px-2 py-1 flex items-center justify-between font-label-sm text-label-sm tracking-wider">
+<span class="font-bold">CONSOLE 01 // DUAL-CH ACOUSTIC DECIBEL WELL</span>
+<span class="text-outline-variant font-telemetry-dense">REF: 0 dB = 0.775V RMS</span>
+</div>
+<!-- DARK INSET WELL -->
+<div class="bg-tertiary p-3 border border-primary flex flex-col gap-3 shadow-[inset_1px_1px_0px_#000000]">
+<!-- CHANNEL A: AGENT -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center font-label-sm text-label-sm text-surface-container-highest">
+<span class="font-bold tracking-wider">CH-A: AGENT 01 (PRIYA)</span>
+<span class="font-telemetry-dense text-secondary-fixed-dim" id="agent-db-val">-24.0 dB RMS</span>
+</div>
+<!-- 24-SEGMENT HARDWARE DECIBEL BAR -->
+<div class="grid grid-cols-24 gap-[2px] h-4 bg-primary-container p-[2px] border border-outline" id="meter-ch-a">
+</div>
+<div class="flex justify-between text-[8px] font-label-sm text-outline-variant px-0.5">
+<span>-40</span><span>-20</span><span>-10</span><span>-5</span><span>0</span><span>+3</span><span>+6</span>
+</div>
+</div>
+<!-- CHANNEL B: CALLER -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between items-center font-label-sm text-label-sm text-surface-container-highest">
+<span class="font-bold tracking-wider">CH-B: CALLER (R. SHARMA)</span>
+<span class="font-telemetry-dense text-tertiary-fixed-dim" id="caller-db-val">-26.0 dB RMS</span>
+</div>
+<!-- 24-SEGMENT HARDWARE DECIBEL BAR -->
+<div class="grid grid-cols-24 gap-[2px] h-4 bg-primary-container p-[2px] border border-outline" id="meter-ch-b">
+</div>
+<div class="flex justify-between text-[8px] font-label-sm text-outline-variant px-0.5">
+<span>-40</span><span>-20</span><span>-10</span><span>-5</span><span>0</span><span>+3</span><span>+6</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- LIVE DIARIZATION & RECOGNITION STREAM -->
+<div class="bg-surface-container-lowest border border-primary flex-1 p-3 shadow-[1px_1px_0px_#1e1e1c] flex flex-col justify-between">
+<div>
+<div class="bg-surface-container-high border-b border-primary p-2 flex items-center justify-between font-label-sm text-label-sm mb-2">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-error animate-ping inline-block"></span>
+<span class="font-bold uppercase tracking-wider">LIVE DIARIZATION STREAM</span>
+</div>
+<div class="flex items-center gap-2 text-outline">
+<span>GNANI PRISMA ASR</span>
+<span>/</span>
+<span class="text-on-surface font-bold">AUTO-SCROLL ON</span>
+</div>
+</div>
+<!-- TRACTOR FEED TRANSCRIPT CONTAINER -->
+<div class="flex flex-col gap-3 max-h-[380px] overflow-y-auto pr-1" id="transcript-feed">
+<div class="text-outline text-telemetry-dense p-3 text-center border border-dashed border-outline-variant" id="empty-transcript-msg">
+  [STANDBY] SELECT A DEMO SAMPLE OR CLICK 'START CALL' TO BEGIN STREAMING...
+</div>
+</div>
+</div>
+
+<!-- CADENCE METRICS & AUDIO BUS STATUS -->
+<div class="mt-3 border-t border-primary pt-2 flex flex-col gap-2">
+<div class="flex items-center justify-between font-label-sm text-label-sm text-on-surface">
+<span class="font-bold">TALK-TO-LISTEN RATIO</span>
+<span class="font-telemetry-dense" id="cadence-ratio-text">AGENT: 50% / CALLER: 50%</span>
+</div>
+<!-- CADENCE SPLIT BAR -->
+<div class="w-full h-3 bg-surface-container flex border border-primary">
+<div class="h-full bg-secondary" id="agent-ratio-bar" style="width: 50%;"></div>
+<div class="h-full bg-on-tertiary-container" id="caller-ratio-bar" style="width: 50%;"></div>
+</div>
+<div class="flex justify-between text-[9px] font-label-sm text-outline uppercase">
+<span id="dead-air-metric">DEAD AIR: 0.0%</span>
+<span id="speech-rate-metric">PACE: BALANCED</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ======================================================== -->
+<!-- CONSOLE 02: NEURAL COPILOT & KB REASONING SURFACE (4 COLS) -->
+<!-- ======================================================== -->
+<section class="col-span-12 lg:col-span-4 flex flex-col gap-4">
+<!-- REAL-TIME ACOUSTIC SENTIMENT GAUGE -->
+<div class="bg-surface-container-lowest border border-primary p-3 shadow-[1px_1px_0px_#1e1e1c] flex flex-col gap-2">
+<div class="bg-primary text-on-primary px-2 py-1 flex items-center justify-between font-label-sm text-label-sm">
+<span class="font-bold">CONSOLE 02 // NEURAL COPILOT DISPATCH</span>
+<span class="text-outline-variant font-telemetry-dense">LATENT: T+140ms</span>
+</div>
+<!-- SENTIMENT METER DECK -->
+<div class="bg-surface-container p-2.5 border border-primary flex flex-col gap-2">
+<div class="flex justify-between items-center font-label-sm text-label-sm">
+<span class="font-bold">CALLER SENTIMENT TRAJECTORY</span>
+<span class="text-secondary font-bold font-telemetry-dense" id="sentiment-label">CURRENT: NEUTRAL (0.0)</span>
+</div>
+<!-- TRI-COLOR ANALOG METER SLIDER BAR -->
+<div class="relative w-full h-4 bg-surface-container-high border border-primary flex">
+<div class="w-1/3 h-full bg-error opacity-40"></div>
+<div class="w-1/3 h-full bg-on-tertiary-container opacity-40"></div>
+<div class="w-1/3 h-full bg-secondary"></div>
+<!-- POINTER THUMB TICK -->
+<div class="absolute top-0 bottom-0 w-2 bg-primary border-x border-on-primary" id="sentiment-pointer" style="left: 50%;"></div>
+</div>
+<div class="flex justify-between text-[9px] font-label-sm text-outline">
+<span>AGITATED (-1.0)</span>
+<span>NEUTRAL (0.0)</span>
+<span>SATISFIED (+1.0)</span>
+</div>
+</div>
+</div>
+
+<!-- COMPLIANCE RUNTIME CHECKLIST -->
+<div class="bg-surface-container-lowest border border-primary p-3 shadow-[1px_1px_0px_#1e1e1c] flex flex-col gap-2">
+<div class="flex justify-between items-center border-b border-primary pb-1.5">
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-primary">
+  MANDATORY COMPLIANCE DISCLOSURES
+</span>
+<span class="font-telemetry-dense text-telemetry-dense bg-surface-container border border-primary px-1.5" id="compliance-summary-count">
+  0 OF 5 VERIFIED
+</span>
+</div>
+<div class="flex flex-col gap-2 font-label-sm text-label-sm" id="compliance-checklist-container">
+<!-- Rule 1 -->
+<div class="flex items-center justify-between p-1.5 bg-surface border border-outline-variant" id="rule-item-RULE_IDENTITY_VERIFICATION">
+<div class="flex items-center gap-2">
+<div class="w-3.5 h-3.5 border border-primary bg-surface flex items-center justify-center text-[10px] font-bold" id="icon-RULE_IDENTITY_VERIFICATION"></div>
+<span>Identity &amp; OTP Verified</span>
+</div>
+<span class="font-telemetry-dense text-outline" id="status-RULE_IDENTITY_VERIFICATION">PENDING</span>
+</div>
+<!-- Rule 2 -->
+<div class="flex items-center justify-between p-1.5 bg-surface border border-outline-variant" id="rule-item-RULE_DISCLOSE_RECORDING">
+<div class="flex items-center gap-2">
+<div class="w-3.5 h-3.5 border border-primary bg-surface flex items-center justify-center text-[10px] font-bold" id="icon-RULE_DISCLOSE_RECORDING"></div>
+<span>Call Recording Consent Disclosed</span>
+</div>
+<span class="font-telemetry-dense text-outline" id="status-RULE_DISCLOSE_RECORDING">PENDING</span>
+</div>
+<!-- Rule 3 -->
+<div class="flex items-center justify-between p-1.5 bg-surface border border-outline-variant" id="rule-item-RULE_FEE_DISCLOSURE">
+<div class="flex items-center gap-2">
+<div class="w-3.5 h-3.5 border border-primary bg-surface flex items-center justify-center text-[10px] font-bold" id="icon-RULE_FEE_DISCLOSURE"></div>
+<span>Annual Fee Waiver Policy Stated</span>
+</div>
+<span class="font-telemetry-dense text-outline" id="status-RULE_FEE_DISCLOSURE">PENDING</span>
+</div>
+<!-- Rule 4 -->
+<div class="flex items-center justify-between p-1.5 bg-surface border border-outline-variant" id="rule-item-RULE_RESOLUTION_TAT">
+<div class="flex items-center gap-2">
+<div class="w-3.5 h-3.5 border border-primary bg-surface flex items-center justify-center text-[10px] font-bold" id="icon-RULE_RESOLUTION_TAT"></div>
+<span>Card Replacement TAT (3-5 Days)</span>
+</div>
+<span class="font-telemetry-dense text-outline" id="status-RULE_RESOLUTION_TAT">PENDING</span>
+</div>
+<!-- Rule 5 -->
+<div class="flex items-center justify-between p-1.5 bg-surface border border-outline-variant" id="rule-item-RULE_NO_GUARANTEED_RETURNS">
+<div class="flex items-center gap-2">
+<div class="w-3.5 h-3.5 border border-primary bg-surface flex items-center justify-center text-[10px] font-bold" id="icon-RULE_NO_GUARANTEED_RETURNS"></div>
+<span>Final Grievance Escalation Window</span>
+</div>
+<span class="font-telemetry-dense text-outline" id="status-RULE_NO_GUARANTEED_RETURNS">PENDING</span>
+</div>
+</div>
+</div>
+
+<!-- RECOMMENDED COPILOT GUIDED RESPONSE -->
+<div class="bg-surface-container-lowest border border-primary flex-1 p-3 shadow-[1px_1px_0px_#1e1e1c] flex flex-col justify-between">
+<div>
+<div class="bg-surface-container-high p-1.5 border border-primary flex items-center justify-between mb-2">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 bg-secondary inline-block"></span>
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider" id="recommendation-header">
+  RECOMMENDED AGENT RESPONSE [KB-BFSI-9021]
+</span>
+</div>
+<span class="font-telemetry-dense text-telemetry-dense font-bold text-secondary" id="recommendation-match">
+  96.4% MATCH
+</span>
+</div>
+<!-- LIVE PIPELINE STAGE CHIPS: ASR -> TRANSLATE -> GEMINI -> TTS -->
+<div class="flex items-center gap-1 mb-2 font-telemetry-dense text-[9px] uppercase">
+  <span class="bg-surface-container border border-outline-variant px-1.5 py-0.5 text-outline" id="chip-asr">ASR</span>
+  <span class="text-outline">&rarr;</span>
+  <span class="bg-surface-container border border-outline-variant px-1.5 py-0.5 text-outline" id="chip-trn">TRN</span>
+  <span class="text-outline">&rarr;</span>
+  <span class="bg-surface-container border border-outline-variant px-1.5 py-0.5 text-outline" id="chip-llm">GEMINI</span>
+  <span class="text-outline">&rarr;</span>
+  <span class="bg-surface-container border border-outline-variant px-1.5 py-0.5 text-outline" id="chip-tts">TTS</span>
+</div>
+<!-- INDEX CARD QUOTE WELL -->
+<div class="bg-surface-container-low border border-on-tertiary-container p-3 font-body-md text-body-md relative">
+<div class="absolute -top-2.5 right-2 bg-on-tertiary-container text-on-primary px-1.5 py-0 font-label-sm text-[9px] uppercase font-bold" id="recommendation-badge">
+  RETRIEVED INTENT SCRIPT
+</div>
+<p class="text-primary italic leading-relaxed" id="copilot-suggested-text">
+  "Sir, agar aapka annual spend 1 lakh se upar hai toh unblock charges waive ho jayenge."
+</p>
+</div>
+<!-- MULTILINGUAL PIPELINE INDICATOR -->
+<div class="bg-surface-container border border-outline-variant p-2 flex items-center justify-between font-label-sm text-label-sm">
+  <div class="flex items-center gap-2">
+    <span class="w-2 h-2 bg-on-tertiary-container inline-block"></span>
+    <span class="text-[9px] uppercase text-outline font-bold">CLIENT LANGUAGE</span>
+    <span class="font-telemetry-dense font-bold text-primary" id="language-badge">-- (AUTO)</span>
+  </div>
+  <span class="font-telemetry-dense text-[9px] text-outline" id="voice-track-label">VOICE TRACK: CLIENT LANG</span>
+</div>
+<div class="bg-surface-container-high border border-outline-variant p-2 font-label-sm text-label-sm flex flex-col gap-1">
+  <span class="text-[9px] uppercase text-outline font-bold">ENGLISH QUESTION (GEMINI ROUTED)</span>
+  <span class="font-telemetry-dense text-telemetry-dense text-on-surface break-words" id="english-query-text">--</span>
+</div>
+</div>
+<!-- ACTION BUTTONS -->
+<div class="flex flex-col gap-2 mt-3">
+<div class="flex items-center gap-2">
+<button class="flex-1 bg-primary text-on-primary border border-primary py-2 px-3 font-label-md text-label-md tracking-wider flex items-center justify-center gap-2 shadow-[1px_1px_0px_#635f59] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none uppercase cursor-pointer" id="insert-script-btn" onclick="useSuggestedReply()" title="Insert suggested reply into agent response and speak it in the client's language (Gnani Timbre TTS)">
+  <span>&#10140;</span> INSERT INTO RESPONSE
+</button>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ======================================================== -->
+<!-- CONSOLE 03: AUTO-SYNC RECORD & AUDIT LEDGER (3 COLS) -->
+<!-- ======================================================== -->
+<section class="col-span-12 lg:col-span-3 flex flex-col gap-4">
+<!-- AUTOMATED FIELD EXTRACTION PANEL -->
+<div class="bg-surface-container-lowest border border-primary p-3 shadow-[1px_1px_0px_#1e1e1c] flex flex-col gap-2">
+<div class="bg-primary text-on-primary px-2 py-1 flex items-center justify-between font-label-sm text-label-sm">
+<span class="font-bold">CONSOLE 03 // AUTO-LEDGER</span>
+<span class="text-outline-variant font-telemetry-dense">SYNC: REALTIME</span>
+</div>
+<div class="flex flex-col gap-2 font-label-sm text-label-sm">
+<div class="flex flex-col border border-outline-variant p-1.5 bg-surface">
+<span class="text-outline text-[9px] uppercase">DISPATCH INCIDENT ID</span>
+<span class="font-telemetry-dense text-telemetry-dense font-bold text-primary" id="ledger-incident-id">VX-INC-PENDING</span>
+</div>
+<div class="flex flex-col border border-outline-variant p-1.5 bg-surface">
+<span class="text-outline text-[9px] uppercase">ISSUE CATEGORY</span>
+<span class="font-bold text-primary" id="ledger-category">CARD_SERVICES / FEE_WAIVER</span>
+</div>
+<div class="flex flex-col border border-outline-variant p-1.5 bg-surface">
+<span class="text-outline text-[9px] uppercase">RESOLUTION STATUS</span>
+<span class="font-bold text-secondary flex items-center gap-1" id="ledger-resolution">
+  <span class="w-2 h-2 bg-secondary inline-block"></span> FEE WAIVER APPLIED (TAT 24H)
+</span>
+</div>
+<div class="flex flex-col border border-outline-variant p-1.5 bg-surface">
+<span class="text-outline text-[9px] uppercase">FOLLOW-UP REQUIRED</span>
+<div class="flex items-center gap-2 mt-1">
+  <span class="font-telemetry-dense font-bold text-[10px]" id="ledger-followup">NO &bull; COMPLIANT</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- LAB DISPATCH SUMMARY MEMO CARD -->
+<div class="bg-surface-container-lowest border border-primary flex-1 p-3 shadow-[1px_1px_0px_#1e1e1c] flex flex-col justify-between">
+<div class="flex flex-col gap-2">
+<div class="border-b border-primary pb-1 flex justify-between items-center">
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-primary">
+  DISPATCH TELEMETRY MEMO
+</span>
+<span class="font-telemetry-dense text-[9px] text-outline">CLASS: INTERNAL LAB</span>
+</div>
+<!-- MEMO RIBBON CONTENT -->
+<div class="bg-surface-container-high p-2.5 border border-outline-variant font-body-sm text-body-sm leading-relaxed text-on-surface">
+<div class="font-label-sm text-[10px] font-bold border-b border-outline-variant pb-1 mb-1 text-on-surface-variant">
+  ACTION ITEMS COMPLETED:
+</div>
+<ul class="list-disc pl-4 space-y-1" id="memo-bullets">
+  <li>Customer reported blocked card; charges queried.</li>
+  <li>Identity verified via DOB + card last-4.</li>
+  <li>Fee waiver applied; unblock request raised with 24h TAT.</li>
+</ul>
+</div>
+<!-- EXPORT TOOLBAR -->
+<div class="grid grid-cols-2 gap-2 mt-1">
+<button class="bg-surface border border-primary py-1 font-label-sm text-label-sm shadow-[1px_1px_0px_#1e1e1c] active:shadow-none hover:bg-surface-container-high flex items-center justify-center gap-1 cursor-pointer" id="view-report-btn">
+  <span class="material-symbols-outlined text-[14px]">description</span> [LAB REPORT]
+</button>
+<button class="bg-surface border border-primary py-1 font-label-sm text-label-sm shadow-[1px_1px_0px_#1e1e1c] active:shadow-none hover:bg-surface-container-high flex items-center justify-center gap-1 cursor-pointer" id="copy-memo-btn" onclick="copyMemo()">
+  <span class="material-symbols-outlined text-[14px]">content_copy</span> COPY RAW MD
+</button>
+</div>
+</div>
+<!-- SIGN & ARCHIVE DISPATCH STAMP -->
+<div class="border-t border-primary pt-3 flex flex-col gap-2">
+<div class="flex justify-between items-center text-[10px] font-label-sm">
+<span class="text-outline">OPERATOR STAMP:</span>
+<span class="font-bold text-primary">PRIYA_01 [CONFIRMED]</span>
+</div>
+<button class="bg-primary text-on-primary border border-primary py-2.5 font-label-md text-label-md tracking-wider shadow-[1px_1px_0px_#635f59] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none uppercase cursor-pointer" onclick="endCall()">
+  SIGN &amp; ARCHIVE SESSION
+</button>
+</div>
+</div>
+</section>
+</div>
+
+<!-- HARDWARE MASTER CONTROL BAR (PINNED BOTTOM DOCK) -->
+<div class="sticky bottom-0 z-40 w-full bg-surface-container-high border-2 border-primary p-3 mt-4 shadow-[0_-4px_16px_rgba(0,0,0,0.2)] flex flex-wrap items-center justify-between gap-4">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-primary">HARDWARE BUS CONTROL:</span>
+<span class="font-telemetry-dense text-telemetry-dense bg-surface border border-primary px-2 py-0.5" id="bus-status">LINE #01 READY</span>
+</div>
+
+<div class="flex items-center gap-3 flex-wrap">
+<!-- START CALL (LIVE MIC) -->
+<button class="bg-secondary text-on-secondary border border-primary px-4 py-2 font-label-sm text-label-sm font-bold shadow-[1px_1px_0px_#1e1e1c] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none flex items-center gap-1.5 uppercase cursor-pointer" id="btn-start-call" onclick="startLiveCall()">
+  <span>&#9654;</span> START CALL (MIC)
+</button>
+
+<!-- PLAY SAMPLE SELECTOR & BUTTON (ONE FEATURE ADDED HERE AS REQUESTED) -->
+<div class="flex items-center border border-primary bg-surface shadow-[1px_1px_0px_#1e1e1c]">
+  <select id="sample-dropdown" class="bg-transparent px-2 py-1.5 font-label-sm text-label-sm uppercase font-bold focus:outline-none border-r border-primary">
+    <option value="Sample - 01">SAMPLE 01 (4 SPK / 90s)</option>
+    <option value="Sample - 02">SAMPLE 02 (2 SPK / 90s)</option>
+    <option value="Sample - 03">SAMPLE 03 (2 SPK / 90s)</option>
+  </select>
+  <button class="bg-primary text-on-primary px-3 py-1.5 font-label-sm text-label-sm font-bold uppercase hover:bg-surface-container-highest hover:text-on-surface cursor-pointer flex items-center gap-1" id="btn-play-sample" onclick="startSampleCall()">
+    <span>&#9654;</span> PLAY SAMPLE
+  </button>
+</div>
+
+<!-- SAMPLE AUDIO TOGGLE -->
+<button class="bg-surface border border-primary px-3 py-2 font-label-sm text-label-sm font-bold shadow-[1px_1px_0px_#1e1e1c] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none flex items-center gap-1 uppercase cursor-pointer" id="btn-audio-toggle" onclick="toggleSampleAudio()">
+  <span>&#128266;</span> AUDIO: ON
+</button>
+
+<!-- ASK AS CUSTOMER (LIVE TEST) -->
+<button class="bg-on-tertiary-container text-on-primary border border-primary px-3 py-2 font-label-sm text-label-sm font-bold shadow-[1px_1px_0px_#1e1e1c] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none flex items-center gap-1 uppercase cursor-pointer" id="btn-customer-speak" onclick="speakAsCustomer()">
+  <span>&#128483;</span> ASK AS CUSTOMER
+</button>
+
+<!-- END CALL (SIGNAL BRICK) -->
+<button class="bg-error text-on-error border border-primary px-4 py-2 font-label-sm text-label-sm font-bold shadow-[1px_1px_0px_#1e1e1c] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none flex items-center gap-1.5 uppercase cursor-pointer" id="btn-end-call" onclick="endCall()">
+  <span>&#9632;</span> END CALL
+</button>
+
+<!-- USE REPLY -->
+<button class="bg-on-tertiary-container text-on-primary border border-primary px-4 py-2 font-label-sm text-label-sm font-bold shadow-[1px_1px_0px_#1e1e1c] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none flex items-center gap-1.5 uppercase cursor-pointer" id="btn-use-reply" onclick="useSuggestedReply()">
+  <span>&#9205;</span> USE REPLY
+</button>
+
+<!-- RESET -->
+<button class="bg-surface border border-primary px-4 py-2 font-label-sm text-label-sm font-bold shadow-[1px_1px_0px_#1e1e1c] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none flex items-center gap-1.5 uppercase cursor-pointer" onclick="resetCall()">
+  <span>&#11118;</span> RESET
+</button>
+</div>
+
+<div class="flex items-center gap-4 font-label-sm text-label-sm text-outline">
+<span>CHASSIS: LOCKED</span>
+<span>&bull;</span>
+<span>FUSE: 250V 2A</span>
+</div>
+</div>
+</div>
+
+<!-- HIDDEN AUDIO ELEMENT FOR GNANI TIMBRE TTS PLAYBACK -->
+<audio id="ttsAudio" class="hidden"></audio>
+
+<!-- VINTAGE LABORATORY REPORT MODAL OVERLAY -->
+<div class="fixed inset-0 z-50 bg-tertiary/75 flex items-center justify-center p-4 hidden" id="report-modal">
+<div class="w-full max-w-4xl bg-surface border-2 border-primary shadow-[4px_4px_0px_#1e1e1c] max-h-[90vh] flex flex-col overflow-hidden">
+<div class="bg-primary text-on-primary px-4 py-2 flex items-center justify-between font-label-sm text-label-sm border-b border-primary">
+  <span class="font-bold tracking-widest uppercase">LABORATORY TELEMETRY DISPATCH LOG // MODEL 770-LAB</span>
+  <button class="text-on-primary font-bold hover:bg-surface-container hover:text-on-surface px-2 py-0.5 border border-on-primary cursor-pointer" id="close-modal-btn">
+    [ESC / CLOSE]
+  </button>
+</div>
+<div class="p-6 overflow-y-auto flex flex-col gap-6 font-body-md text-on-surface bg-surface-bright">
+<div class="flex justify-between items-start border-b-2 border-primary pb-4">
+  <div class="flex items-center gap-3">
+    <div class="w-10 h-10 bg-primary text-on-primary flex items-center justify-center font-headline-lg font-bold">VX</div>
+    <div class="flex flex-col">
+      <span class="font-headline-md text-headline-md font-bold tracking-tight">VOXRELAY ACOUSTIC RESEARCH LABS</span>
+      <span class="font-label-sm text-label-sm text-on-surface-variant">DIVISION OF TELECOMMUNICATIONS &amp; BFSI QA</span>
+    </div>
+  </div>
+  <div class="text-right font-telemetry-dense text-telemetry-dense">
+    <div class="font-bold" id="modal-report-serial">REPORT SERIAL: 1974-DOC-9884</div>
+    <div class="text-outline">EMISSION: CLASS-A 48kHz</div>
+  </div>
+</div>
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-2 bg-surface-container border border-primary p-3 font-label-sm text-label-sm">
+  <div><span class="text-outline block text-[9px]">CALLER REF</span><span class="font-bold" id="modal-caller">#CUST-88392</span></div>
+  <div><span class="text-outline block text-[9px]">PRIMARY OPERATOR</span><span class="font-bold">PRIYA SHARMA (AGT_01)</span></div>
+  <div><span class="text-outline block text-[9px]">SESSION DURATION</span><span class="font-bold text-error" id="modal-duration">00:01:30.0</span></div>
+  <div><span class="text-outline block text-[9px]">COMPLIANCE SCORE</span><span class="font-bold text-secondary" id="modal-compliance">100.0%</span></div>
+</div>
+
+<div class="flex flex-col gap-1 border border-primary p-3 bg-surface-container-lowest">
+  <span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-primary border-b border-primary pb-1">
+    01. INCIDENT SYNOPSIS &amp; SUMMARY BULLETS
+  </span>
+  <ul class="list-disc pl-4 space-y-1 font-body-md text-body-md text-on-surface pt-2" id="modal-bullets">
+    <li>Customer reported blocked credit card and asked for unblock charges.</li>
+    <li>Identity verified via DOB + card last-4; fee waiver confirmed.</li>
+    <li>Unblock request raised; 24-working-hour TAT communicated and accepted.</li>
+  </ul>
+</div>
+
+<div class="flex flex-col gap-1">
+  <span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-primary">
+    02. ACOUSTIC METRICS &amp; QA TELEMETRY
+  </span>
+  <div class="grid grid-cols-3 gap-3 text-center border border-primary p-3 bg-surface-container">
+    <div class="border border-outline-variant p-2 bg-surface">
+      <span class="text-outline text-[9px] font-label-sm uppercase block">TALK:LISTEN RATIO</span>
+      <span class="font-telemetry-dense text-telemetry-readout font-bold text-primary" id="modal-ratio">1.12</span>
+    </div>
+    <div class="border border-outline-variant p-2 bg-surface">
+      <span class="text-outline text-[9px] font-label-sm uppercase block">DEAD AIR PERCENTAGE</span>
+      <span class="font-telemetry-dense text-telemetry-readout font-bold text-secondary" id="modal-dead-air">3.8%</span>
+    </div>
+    <div class="border border-outline-variant p-2 bg-surface">
+      <span class="text-outline text-[9px] font-label-sm uppercase block">CRITICAL ESCALATION</span>
+      <span class="font-telemetry-dense text-telemetry-readout font-bold text-secondary" id="modal-escalated">NO &bull; PASSED</span>
+    </div>
+  </div>
+</div>
+</div>
+<div class="bg-surface-container-high px-4 py-2 border-t border-primary flex justify-end gap-3">
+  <button class="bg-surface border border-primary px-4 py-1.5 font-label-sm text-label-sm font-bold shadow-[1px_1px_0px_#1e1e1c] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none uppercase cursor-pointer" onclick="window.print()">
+    PRINT TERMINAL COPY
+  </button>
+  <button class="bg-primary text-on-primary border border-primary px-4 py-1.5 font-label-sm text-label-sm font-bold shadow-[1px_1px_0px_#635f59] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none uppercase cursor-pointer" id="close-modal-footer-btn">
+    ACKNOWLEDGE &amp; CLOSE
+  </button>
+</div>
+</div>
+</div>
+</div></main></div>
+
+<script>
+  // Build 24 segments in each VU meter
+  function initMeters() {
+    const chA = document.getElementById('meter-ch-a');
+    const chB = document.getElementById('meter-ch-b');
+    chA.innerHTML = '';
+    chB.innerHTML = '';
+    for (let i = 0; i < 24; i++) {
+      const segA = document.createElement('div');
+      segA.className = 'bg-surface-dim opacity-20 h-full';
+      chA.appendChild(segA);
+
+      const segB = document.createElement('div');
+      segB.className = 'bg-surface-dim opacity-20 h-full';
+      chB.appendChild(segB);
+    }
+  }
+  initMeters();
+
+  function updateMeterBars(containerId, count) {
+    const el = document.getElementById(containerId);
+    if (!el) return;
+    Array.from(el.children).forEach((child, idx) => {
+      if (idx < count) {
+        child.className = idx > 18 ? 'bg-error h-full' : (idx > 13 ? 'bg-on-tertiary-container h-full' : 'bg-secondary h-full');
+      } else {
+        child.className = 'bg-surface-dim opacity-20 h-full';
+      }
+    });
+  }
+
+  // ─── Connection Status Diagnostic Banner ───────────────────────────────────
+  function showConnError(msg) {
+    let banner = document.getElementById('conn-error-banner');
+    if (!banner) {
+      banner = document.createElement('div');
+      banner.id = 'conn-error-banner';
+      banner.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#ba1a1a;color:#fff;font-family:monospace;font-size:13px;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;';
+      banner.innerHTML = '<span id="conn-error-text"></span><button onclick="document.getElementById(\'conn-error-banner\').remove()" style="background:transparent;border:1px solid #fff;color:#fff;padding:2px 8px;cursor:pointer;font-family:monospace;">×</button>';
+      document.body.prepend(banner);
+    }
+    document.getElementById('conn-error-text').textContent = '⚠ ' + msg;
+  }
+  function hideConnError() {
+    const b = document.getElementById('conn-error-banner');
+    if (b) b.remove();
+  }
+
+  function setText(id, val) { const el = document.getElementById(id); if (el) el.textContent = val; }
+  function safeSet(id, fn) { const el = document.getElementById(id); if (el) fn(el); }
+
+  let sampleAudioEnabled = true;
+  const sampleAudios = { agent: null, customer: null };
+  function stopSampleAudio() {
+    Object.keys(sampleAudios).forEach(sp => {
+      const a = sampleAudios[sp];
+      if (a) { try { a.pause(); } catch (_) {} }
+    });
+    try { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); } catch (_) {}
+  }
+  function toggleSampleAudio() {
+    sampleAudioEnabled = !sampleAudioEnabled;
+    const btn = document.getElementById('btn-audio-toggle');
+    if (btn) btn.innerHTML = sampleAudioEnabled ? '<span>&#128266;</span> AUDIO: ON' : '<span>&#128274;</span> AUDIO: OFF';
+    if (!sampleAudioEnabled) stopSampleAudio();
+  }
+  function speakFallback(text) {
+    try {
+      if ('speechSynthesis' in window && text) {
+        if (window.speechSynthesis.speaking) return;
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = 'hi-IN';
+        u.rate = 1.0;
+        window.speechSynthesis.speak(u);
+      }
+    } catch (e) {}
+  }
+
+  const customerPrompts = [
+    'Unblock charges kitne lagenge? Annual fee waiver policy kya hai?',
+    'Card kab tak unblock hoga? What is the TAT, kitna time lagega?',
+    'Aap ne mera date of birth aur card last four digits verify kiya? Identity check please.',
+    'Kya aap call recording kar rahe ho? Is this call being recorded?'
+  ];
+  let customerPromptIdx = 0;
+  function speakAsCustomer() {
+    if (!socket) return;
+    const prompt = customerPrompts[customerPromptIdx % customerPrompts.length];
+    customerPromptIdx++;
+    socket.emit('command', { type: 'simulate_customer', text: prompt });
+
+    const btn = document.getElementById('btn-customer-speak');
+    if (btn) {
+      btn.innerHTML = '<span>&#128483;</span> CUSTOMER: SENT';
+      setTimeout(() => {
+        if (btn) btn.innerHTML = '<span>&#128483;</span> ASK AS CUSTOMER';
+      }, 1500);
+    }
+  }
+
+  // Socket.IO Setup
+  const socket = (typeof io !== 'undefined') ? io('http://localhost:3003', {
+    path: '/',
+    transports: ['websocket', 'polling'],
+    reconnectionAttempts: 10,
+    reconnectionDelay: 1000,
+    timeout: 5000
+  }) : null;
+  if (!socket) showConnError('Socket.IO client unavailable. Restart via START-AGENTCOPILOT.bat and reload.');
+
+  let currentCallId = null;
+  let currentSuggestedReply = "Sir, unblock charges are 250 rupees, but agar aapka annual spend 1 lakh se upar hai toh waive ho jayenge.";
+  let currentClientLanguage = null; // language code spoken by client (from KNOWLEDGE_SURFACED)
+  let callStartTime = null;
+  let timerInterval = null;
+  let isCallActive = false;
+  let ttsRequestSeq = 0;
+  let ttsSentAt = null;
+  let serverTtsResponded = false;
+  let ttsFallbackTimer = null;
+  let toastTimer = null;
+  // Echo suppression: while the agent voice plays on the speakers, the mic
+  // hears it and both ASR engines would re-enter it as customer speech.
+  // Frames + speech results are dropped until micSuppressedUntil has passed.
+  let micSuppressedUntil = 0;
+  function startMicSuppression(maxMs) {
+    const until = Date.now() + maxMs;
+    if (until > micSuppressedUntil) micSuppressedUntil = until;
+  }
+  function endMicSuppression() { micSuppressedUntil = 0; }
+  function isMicSuppressed() { return Date.now() < micSuppressedUntil; }
+
+  // Map pipeline language codes -> BCP-47 speech tags for the browser TTS fallback
+  const BCP47 = { hi: 'hi-IN', te: 'te-IN', ta: 'ta-IN', bn: 'bn-IN', mr: 'mr-IN', gu: 'gu-IN', kn: 'kn-IN', ml: 'ml-IN', pa: 'pa-IN', ur: 'ur-IN' };
+  function speechLangFor(code) {
+    if (!code || code === 'xx') return 'en-IN';
+    if (code === 'en') return 'en-IN';
+    if (code === 'hinglish') return 'hi-IN';
+    return BCP47[code] || 'hi-IN';
+  }
+  function setStageChip(id, text, hot) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.textContent = text;
+    el.className = hot
+      ? 'bg-secondary text-on-secondary border border-primary px-1.5 py-0.5 font-bold'
+      : 'bg-surface-container border border-outline-variant px-1.5 py-0.5 text-outline';
+  }
+  function resetStageChips() {
+    setStageChip('chip-asr', 'ASR', false);
+    setStageChip('chip-trn', 'TRN', false);
+    setStageChip('chip-llm', 'GEMINI', false);
+    setStageChip('chip-tts', 'TTS', false);
+  }
+
+  function showToast(message) {
+    let toast = document.getElementById('cockpit-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'cockpit-toast';
+      toast.className = 'fixed bottom-4 right-4 z-50 bg-surface border border-error text-on-surface px-3 py-2 font-label-md text-label-md shadow-[2px_2px_0px_#635f59]';
+      document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.style.display = 'block';
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { toast.style.display = 'none'; }, 2000);
+  }
+
+  function setReplyActionsEnabled(enabled) {
+    ['insert-script-btn', 'btn-use-reply'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.disabled = !enabled;
+      el.classList.toggle('opacity-50', !enabled);
+      el.classList.toggle('cursor-not-allowed', !enabled);
+    });
+  }
+
+  function speakBrowserTts(requestId) {
+    if (requestId !== ttsRequestSeq) return;
+    if (!('speechSynthesis' in window) || !currentSuggestedReply) return;
+    if ('speechSynthesis' in window) {
+      try { window.speechSynthesis.cancel(); } catch (_) {}
+    }
+    const u = new SpeechSynthesisUtterance(currentSuggestedReply);
+    u.lang = speechLangFor(currentClientLanguage);
+    u.rate = 1.0;
+    u.onstart = () => startMicSuppression(30000);
+    u.onend = endMicSuppression;
+    u.onerror = endMicSuppression;
+    window.speechSynthesis.speak(u);
+  }
+
+  if (socket) socket.on('connect', () => {
+    console.log('[cockpit] connected to call engine :3003');
+    hideConnError();
+    socket.emit('command', { type: 'list_samples' });
+    safeSet('socket-relay-dot', el => { el.className = 'w-2 h-2 bg-secondary border border-primary animate-pulse'; });
+    safeSet('socket-relay-status', el => { el.textContent = 'SYS_RELAY: CONNECTED (:3003)'; });
+    safeSet('sidebar-carrier-status', el => { el.textContent = 'LOCKED (3003)'; });
+  });
+
+  if (socket) socket.on('disconnect', () => {
+    console.warn('[cockpit] disconnected from call engine');
+    stopSampleAudio();
+    safeSet('socket-relay-dot', el => { el.className = 'w-2 h-2 bg-error border border-primary'; });
+    safeSet('socket-relay-status', el => { el.textContent = 'SYS_RELAY: DISCONNECTED'; });
+    safeSet('sidebar-carrier-status', el => { el.textContent = 'OFFLINE'; });
+    showConnError('Call Engine disconnected. Make sure both servers are running. Open START-AGENTCOPILOT.bat to restart.');
+  });
+
+  if (socket) socket.on('connect_error', (err) => {
+    console.error('[cockpit] connection error:', err.message);
+    showConnError('Cannot reach Call Engine at :3003. Run START-AGENTCOPILOT.bat and access via http://localhost:4000');
+    safeSet('socket-relay-dot', el => { el.className = 'w-2 h-2 bg-error border border-primary'; });
+    safeSet('socket-relay-status', el => { el.textContent = 'SYS_RELAY: ERROR'; });
+    safeSet('sidebar-carrier-status', el => { el.textContent = 'ERROR'; });
+  });
+
+  if (socket) socket.on('samples-list', (samples) => {
+    console.log('[cockpit] samples-list received:', samples);
+    const dropdown = document.getElementById('sample-dropdown');
+    if (!dropdown || !Array.isArray(samples)) return;
+    dropdown.innerHTML = '';
+    samples.forEach(s => {
+      const opt = document.createElement('option');
+      opt.value = s.id;
+      opt.textContent = `${s.id} (${s.speakers} SPK / ${s.durationS || 90}s)`;
+      dropdown.appendChild(opt);
+    });
+  });
+
+  if (socket) socket.on('tts-audio', (arrayBuffer) => {
+    console.log('[cockpit] tts-audio received, bytes:', arrayBuffer.byteLength);
+    if (!arrayBuffer || arrayBuffer.byteLength === 0) return;
+    serverTtsResponded = true;
+    if (ttsSentAt) setStageChip('chip-tts', `TTS ${Math.max(1, Date.now() - ttsSentAt)}ms`, true);
+    if (ttsFallbackTimer) { clearTimeout(ttsFallbackTimer); ttsFallbackTimer = null; }
+    if ('speechSynthesis' in window) {
+      try { window.speechSynthesis.cancel(); } catch (_) {}
+    }
+    try {
+      const blob = new Blob([arrayBuffer], { type: 'audio/mp3' });
+      const url = URL.createObjectURL(blob);
+      const audio = document.getElementById('ttsAudio');
+      audio.src = url;
+      // Suppress the mic while the reply plays so speaker bleed is not
+      // re-transcribed as customer speech; `ended` re-opens the mic within ms.
+      startMicSuppression(12000);
+      audio.onended = endMicSuppression;
+      audio.onerror = endMicSuppression;
+      audio.play().catch(e => console.warn('[tts audio play error]', e));
+    } catch (e) {
+      console.error(e);
+    }
+  });
+
+  if (socket) socket.on('tts-status', (status) => {
+    if (!status || status.requestId !== ttsRequestSeq) return;
+    if (ttsSentAt) setStageChip('chip-tts', `TTS ${Math.max(1, Date.now() - ttsSentAt)}ms`, status.status !== 'failed');
+    if (status.status === 'ok') {
+      serverTtsResponded = true;
+      if (status.language && status.language !== 'en') {
+        setText('voice-track-label', `SPOKEN IN: ${(currentClientLanguage || status.language).toUpperCase()}`);
+      } else {
+        setText('voice-track-label', 'SPOKEN IN: ENGLISH');
+      }
+      if (ttsFallbackTimer) { clearTimeout(ttsFallbackTimer); ttsFallbackTimer = null; }
+      if ('speechSynthesis' in window) {
+        try { window.speechSynthesis.cancel(); } catch (_) {}
+      }
+    } else if (status.status === 'failed') {
+      serverTtsResponded = true;
+      if (ttsFallbackTimer) { clearTimeout(ttsFallbackTimer); ttsFallbackTimer = null; }
+      speakBrowserTts(status.requestId);
+    }
+  });
+
+  if (socket) socket.on('sample-audio', (ev) => {
+    if (!sampleAudioEnabled) return;
+    try {
+      const url = '/samples/' + encodeURIComponent(ev.sampleId) + '/' + encodeURIComponent(ev.file);
+      let a = sampleAudios[ev.speaker];
+      if (!a || a.dataset.src !== url) {
+        a = new Audio(url);
+        a.preload = 'auto';
+        a.dataset.src = url;
+        sampleAudios[ev.speaker] = a;
+      }
+      const target = Math.max(0, (ev.at_s || 0) - 0.05);
+      const seekAndPlay = () => {
+        try {
+          if (isFinite(a.duration) && a.duration > 0) {
+            a.currentTime = Math.min(target, Math.max(0, a.duration - 0.5));
+          } else {
+            a._pendingSeek = target;
+          }
+        } catch (se) {}
+        a.play().catch(err => {
+          console.warn('[sample audio] play blocked, using browser TTS fallback:', err && err.message);
+          speakFallback(ev.text);
+        });
+      };
+      if (a.readyState >= 1) seekAndPlay();
+      else a.addEventListener('loadedmetadata', seekAndPlay, { once: true });
+    } catch (e) {
+      console.error('[sample audio]', e);
+      speakFallback(ev.text);
+    }
+  });
+
+  if (socket) socket.on('agent-event', (event) => {
+    console.log('[agent-event]', event.event_type, event);
+    if (event.latency_ms) {
+      document.getElementById('latency-badge').textContent = `LATENCY: ${event.latency_ms}ms`;
+    }
+
+    switch (event.event_type) {
+      case 'CALL_STARTED':
+        handleCallStarted(event);
+        break;
+      case 'TRANSCRIPTION_DELTA':
+        handleTranscriptionDelta(event);
+        break;
+      case 'COMPLIANCE_SIGNAL':
+        handleComplianceSignal(event);
+        break;
+      case 'KNOWLEDGE_SURFACED':
+        handleKnowledgeSurfaced(event);
+        break;
+      case 'AUDIO_LEVEL':
+        handleAudioLevel(event);
+        break;
+      case 'CALL_SUMMARY':
+        handleCallSummary(event);
+        break;
+      case 'QA_CALL_SCORED':
+        console.log('[cockpit] Call scored:', event.payload);
+        break;
+    }
+  });
+
+  function handleCallStarted(evt) {
+    isCallActive = true;
+    currentCallId = evt.call_id;
+    stopSampleAudio();
+    setText('call-id-badge', `CALL ID: ${evt.call_id}`);
+    setText('call-status-badge', `CALL STATE: LIVE (${evt.payload.script_name})`);
+    safeSet('header-caller-id', el => { el.textContent = `${evt.payload.phone_masked} [${evt.payload.customer_name}]`; });
+    setText('bus-status', `LINE #01 INGESTION BUS ACTIVE`);
+    setText('ledger-incident-id', `VX-${evt.call_id.toUpperCase()}`);
+    currentClientLanguage = null;
+    setText('language-badge', '-- (AUTO)');
+    setText('english-query-text', '--');
+    setText('voice-track-label', 'VOICE TRACK: CLIENT LANG');
+    resetStageChips();
+
+    // Reset transcript
+    const feed = document.getElementById('transcript-feed');
+    if (feed) feed.innerHTML = '';
+
+    setReplyActionsEnabled(true);
+
+    // Start timer
+    callStartTime = Date.now();
+    if (timerInterval) clearInterval(timerInterval);
+    timerInterval = setInterval(() => {
+      const el = document.getElementById('call-timer');
+      if (!el) return;
+      const elapsed = (Date.now() - callStartTime) / 1000;
+      const mins = String(Math.floor(elapsed / 60)).padStart(2, '0');
+      const secs = String(Math.floor(elapsed % 60)).padStart(2, '0');
+      const sub = Math.floor((elapsed % 1) * 10);
+      el.textContent = `00:${mins}:${secs}.${sub}`;
+      const subTimer = document.getElementById('sub-call-timer');
+      if (subTimer) subTimer.textContent = `00:${mins}:${secs}.${sub}`;
+    }, 100);
+  }
+
+  function handleTranscriptionDelta(evt) {
+    const { speaker, text, confidence, is_final, seq, source } = evt.payload;
+    const feed = document.getElementById('transcript-feed');
+    const existingEmpty = document.getElementById('empty-transcript-msg');
+    if (existingEmpty) existingEmpty.remove();
+
+    // Recent customer utterance re-arms the pipeline (trailing stages go idle)
+    if (is_final && speaker === 'customer' && source !== 'injected') {
+      setStageChip('chip-asr', `ASR ${evt.latency_ms}ms`, true);
+      setStageChip('chip-trn', 'TRN', false);
+      setStageChip('chip-llm', 'GEMINI', false);
+      setStageChip('chip-tts', 'TTS', false);
+    }
+
+    const isAgent = speaker === 'agent';
+    const isInjected = source === 'injected';
+    const borderCol = isAgent ? 'border-secondary' : 'border-on-tertiary-container';
+    const textCol = isAgent ? 'text-secondary' : 'text-on-tertiary-container';
+    const speakerLabel = isInjected
+      ? 'CH-A // AGENT 01 (PRIYA) [DISPATCH]'
+      : isAgent ? 'CH-A // AGENT 01 (PRIYA)' : 'CH-B // CALLER (RAJESH)';
+
+    let turnId = `turn-${seq}`;
+    let turnEl = document.getElementById(turnId);
+    if (!turnEl && is_final) {
+      const pendings = feed.querySelectorAll(`[data-pending="true"][data-speaker="${speaker}"]`);
+      if (pendings.length) turnEl = pendings[pendings.length - 1];
+    }
+
+    if (!turnEl) {
+      turnEl = document.createElement('div');
+      turnEl.id = turnId;
+      turnEl.dataset.speaker = speaker;
+      turnEl.dataset.pending = is_final ? 'false' : 'true';
+      turnEl.className = `bg-surface p-2 border-l-4 ${borderCol} border border-outline-variant`;
+      turnEl.innerHTML = `
+        <div class="flex justify-between items-center font-label-sm text-label-sm mb-1 text-on-surface-variant">
+          <span class="font-bold ${textCol}">${speakerLabel}</span>
+          <span class="font-telemetry-dense text-[10px] conf-badge">CONF: ${(confidence || 0.98).toFixed(3)}</span>
+        </div>
+        <p class="font-body-md text-body-md text-on-surface turn-text">${escapeHtml(text)}</p>
+      `;
+      feed.appendChild(turnEl);
+    } else {
+      turnEl.querySelector('.turn-text').textContent = text;
+      turnEl.querySelector('.conf-badge').textContent = `CONF: ${(confidence || 0.98).toFixed(3)}`;
+    }
+
+    if (!is_final) {
+      turnEl.classList.add('opacity-80');
+      turnEl.dataset.pending = 'true';
+    } else {
+      turnEl.classList.remove('opacity-80');
+      turnEl.dataset.pending = 'false';
+    }
+
+    feed.scrollTop = feed.scrollHeight;
+  }
+
+  function handleComplianceSignal(evt) {
+    const checklist = evt.payload.checklist;
+    if (!Array.isArray(checklist)) return;
+
+    let passedCount = 0;
+    checklist.forEach(item => {
+      const row = document.getElementById(`rule-item-${item.rule_id}`);
+      const icon = document.getElementById(`icon-${item.rule_id}`);
+      const statusEl = document.getElementById(`status-${item.rule_id}`);
+      if (!row || !statusEl) return;
+
+      if (item.status === 'PASSED') {
+        passedCount++;
+        row.className = 'flex items-center justify-between p-1.5 bg-surface border border-outline-variant';
+        icon.className = 'w-3.5 h-3.5 border border-primary bg-primary flex items-center justify-center text-on-primary text-[10px] font-bold';
+        icon.textContent = '✓';
+        statusEl.className = 'font-telemetry-dense text-secondary font-bold';
+        statusEl.textContent = item.passed_at_s ? `VERIFIED ${item.passed_at_s}s` : 'VERIFIED';
+      } else if (item.status === 'FAILED') {
+        row.className = 'flex items-center justify-between p-1.5 bg-error-container/40 border border-error';
+        icon.className = 'w-3.5 h-3.5 border border-error bg-error flex items-center justify-center text-on-error text-[10px] font-bold';
+        icon.textContent = '✗';
+        statusEl.className = 'font-telemetry-dense text-error font-bold';
+        statusEl.textContent = 'FAILED';
+      } else {
+        row.className = 'flex items-center justify-between p-1.5 bg-surface-container-high border border-primary';
+        icon.className = 'w-3.5 h-3.5 border border-primary bg-surface flex items-center justify-center text-[10px]';
+        icon.textContent = '';
+        statusEl.className = 'font-telemetry-dense text-on-tertiary-container font-bold';
+        statusEl.textContent = 'PENDING';
+      }
+    });
+
+    const score = Math.round((passedCount / checklist.length) * 100);
+    document.getElementById('compliance-summary-count').textContent = `${passedCount} OF ${checklist.length} VERIFIED`;
+    document.getElementById('cockpit-compliance-score').textContent = `${score}%`;
+    document.getElementById('cockpit-compliance-score').className = score >= 80 ? 'font-telemetry-readout font-bold text-secondary text-[16px]' : 'font-telemetry-readout font-bold text-error text-[16px]';
+  }
+
+  function handleKnowledgeSurfaced(evt) {
+    const { intent, primary_recommendation, suggested_quick_reply } = evt.payload;
+    safeSet('header-intent', el => { el.textContent = intent.toUpperCase(); });
+    document.getElementById('recommendation-header').textContent = `RECOMMENDED AGENT RESPONSE [${primary_recommendation.kb_article_id}]`;
+    document.getElementById('copilot-suggested-text').textContent = `"${primary_recommendation.direct_answer}"`;
+    currentSuggestedReply = primary_recommendation.direct_answer || suggested_quick_reply;
+
+    // ── Multilingual pipeline indicators ──────────────────────────────────
+    const p = evt.payload;
+    currentClientLanguage = p.detected_language || 'xx';
+    const langLabel = (p.detected_language_label || 'English (assumed)').toUpperCase();
+    setText('language-badge', `${langLabel}`);
+    setText('english-query-text', p.english_query || p.original_query || '--');
+    const stages = p.stage_latencies || {};
+    if (stages.translate_ms != null) {
+      setStageChip('chip-trn', stages.translate_ms > 0 && currentClientLanguage !== 'en' && currentClientLanguage !== 'xx'
+        ? `TRN ${stages.translate_ms}ms`
+        : 'TRN PASS', currentClientLanguage !== 'en' && currentClientLanguage !== 'xx');
+    }
+    if (stages.llm_ms != null) setStageChip('chip-llm', `GEMINI ${stages.llm_ms}ms`, true);
+    setStageChip('chip-tts', 'TTS', false);
+
+    // Shift sentiment slightly toward positive on intent resolve
+    document.getElementById('sentiment-pointer').style.left = '80%';
+    document.getElementById('sentiment-label').textContent = 'CURRENT: RECEPTIVE / SATISFIED (+0.80)';
+  }
+
+  function handleAudioLevel(evt) {
+    const { level, speaker } = evt.payload;
+    // dB scale runs from 0 (loudest) to -60 dBFS (silent bottom of the bar)
+    const count = Math.max(0, Math.min(24, Math.floor(24 * (1 - Math.abs(level) / 60))));
+    if (speaker === 'agent') {
+      updateMeterBars('meter-ch-a', count);
+      document.getElementById('agent-db-val').textContent = `${level.toFixed(1)} dB RMS`;
+    } else {
+      updateMeterBars('meter-ch-b', count);
+      document.getElementById('caller-db-val').textContent = `${level.toFixed(1)} dB RMS`;
+    }
+  }
+
+  function handleCallSummary(evt) {
+    isCallActive = false;
+    setReplyActionsEnabled(false);
+    clearInterval(timerInterval);
+    document.getElementById('call-status-badge').textContent = 'CALL STATE: FINISHED (PERSISTED)';
+    document.getElementById('bus-status').textContent = 'LINE #01 RECORD PERSISTED';
+    if (typeof resetControlButtons === 'function') resetControlButtons();
+
+    const p = evt.payload;
+    // Cadence
+    const ratio = p.metrics.talk_listen_ratio;
+    const deadAir = p.metrics.dead_air_pct;
+    document.getElementById('dead-air-metric').textContent = `DEAD AIR: ${deadAir}%`;
+    const agentPct = Math.round((ratio / (ratio + 1)) * 100) || 50;
+    document.getElementById('agent-ratio-bar').style.width = `${agentPct}%`;
+    document.getElementById('caller-ratio-bar').style.width = `${100 - agentPct}%`;
+    document.getElementById('cadence-ratio-text').textContent = `AGENT: ${agentPct}% / CALLER: ${100 - agentPct}%`;
+
+    // Memo
+    const memoUl = document.getElementById('memo-bullets');
+    memoUl.innerHTML = '';
+    (p.bullets || []).forEach(b => {
+      const li = document.createElement('li');
+      li.textContent = b;
+      memoUl.appendChild(li);
+    });
+
+    // Modal data
+    document.getElementById('modal-report-serial').textContent = `REPORT SERIAL: ${evt.call_id.toUpperCase()}`;
+    document.getElementById('modal-caller').textContent = p.crm.customer_name;
+    document.getElementById('modal-duration').textContent = `00:${String(Math.floor(p.duration_s / 60)).padStart(2,'0')}:${String(Math.floor(p.duration_s % 60)).padStart(2,'0')}.0`;
+    document.getElementById('modal-compliance').textContent = `${p.metrics.compliance_score}%`;
+    document.getElementById('modal-ratio').textContent = String(p.metrics.talk_listen_ratio);
+    document.getElementById('modal-dead-air').textContent = `${p.metrics.dead_air_pct}%`;
+    document.getElementById('modal-escalated').textContent = p.metrics.compliance_score >= 80 ? 'NO • PASSED' : 'YES • ESCALATED';
+
+    const modalBullets = document.getElementById('modal-bullets');
+    modalBullets.innerHTML = '';
+    (p.bullets || []).forEach(b => {
+      const li = document.createElement('li');
+      li.textContent = b;
+      modalBullets.appendChild(li);
+    });
+  }
+
+  function navigate(path) {
+    if (window.location.protocol === 'file:') {
+      if (path === '/supervisor') window.location.href = './supervisor_dashboard.html';
+      else if (path === '/cockpit') window.location.href = './agent_copilot_cockpit.html';
+      else if (path === '/auth-terminal') window.location.href = './auth_terminal.html';
+      else window.location.href = path;
+    } else {
+      window.location.href = path;
+    }
+  }
+
+  // User Actions
+  function startSampleCall() {
+    if (!socket) return;
+    const sampleDropdown = document.getElementById('sample-dropdown');
+    const sampleId = sampleDropdown ? sampleDropdown.value : 'Sample - 01';
+    
+    // Immediate visual feedback
+    const btn = document.getElementById('btn-play-sample');
+    if (btn) btn.innerHTML = '<span>⏳</span> STREAMING...';
+    const topBtn = document.getElementById('top-play-sample-btn');
+    if (topBtn) topBtn.innerHTML = '<span>⏳</span> STREAMING...';
+    document.getElementById('call-status-badge').textContent = `CALL STATE: STARTING (${sampleId})...`;
+    document.getElementById('bus-status').textContent = 'LINE #01 INGESTION ACTIVE';
+
+    socket.emit('command', {
+      type: 'start_sample',
+      sampleId: sampleId,
+      durationSec: 90
+    });
+  }
+
+  function startLiveCall() {
+    if (!socket) return;
+    const btn = document.getElementById('btn-start-call');
+    if (btn) btn.innerHTML = '<span>●</span> MIC ACTIVE';
+    const topBtn = document.getElementById('top-start-call-btn');
+    if (topBtn) topBtn.innerHTML = '<span>●</span> MIC ACTIVE';
+
+    document.getElementById('call-status-badge').textContent = 'CALL STATE: LIVE MIC';
+    document.getElementById('bus-status').textContent = 'LINE #01 MIC INGESTION BUS';
+
+    socket.emit('command', { type: 'start_call' });
+
+    // 1. Microphone capture for raw PCM streaming
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({
+        audio: { echoCancellation: true, noiseSuppression: true, autoGainControl: true }
+      }).then(stream => {
+        window._activeMicStream = stream;
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
+        window._activeAudioCtx = audioCtx;
+        const source = audioCtx.createMediaStreamSource(stream);
+        const processor = audioCtx.createScriptProcessor(4096, 1, 1);
+        const mute = audioCtx.createGain();
+        mute.gain.value = 0;
+        source.connect(processor);
+        processor.connect(mute);
+        mute.connect(audioCtx.destination);
+        processor.onaudioprocess = (e) => {
+          if (!isCallActive) return;
+          // Suppressed while the agent voice plays on the speakers (echo gate)
+          if (isMicSuppressed()) return;
+          const input = e.inputBuffer.getChannelData(0);
+          const pcm16 = new Int16Array(input.length);
+          for (let i = 0; i < input.length; i++) {
+            const s = Math.max(-1, Math.min(1, input[i]));
+            pcm16[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
+          }
+          socket.emit('audio-frame', pcm16.buffer);
+        };
+      }).catch(err => console.warn('[mic error]', err));
+    }
+
+    // 2. Real-time Live Web Speech Recognition (Free, native, no API key needed!)
+    const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (SpeechRec) {
+      try {
+        if (window._speechRec) { window._speechRec.stop(); }
+        const rec = new SpeechRec();
+        rec.continuous = true;
+        rec.interimResults = true;
+        rec.lang = 'hi-IN';
+        rec.onresult = (ev) => {
+          // Web Speech would also transcribe the agent TTS voice bleeding
+          // through the speakers — drop results while the mic is suppressed.
+          if (isMicSuppressed()) return;
+          for (let i = ev.resultIndex; i < ev.results.length; ++i) {
+            const text = ev.results[i][0].transcript.trim();
+            if (ev.results[i].isFinal && text) {
+              console.log('[live mic transcribed speech]:', text);
+              // Send spoken customer question to call engine to trigger KB + compliance
+              socket.emit('command', { type: 'simulate_customer', text });
+            }
+          }
+        };
+        rec.onerror = (e) => console.warn('[speech rec error]', e);
+        rec.start();
+        window._speechRec = rec;
+      } catch (e) {
+        console.warn('[speech rec start error]', e);
+      }
+    }
+  }
+
+  function resetControlButtons() {
+    const btnPlay = document.getElementById('btn-play-sample');
+    if (btnPlay) btnPlay.innerHTML = '<span>▶</span> PLAY SAMPLE';
+    const topBtnPlay = document.getElementById('top-play-sample-btn');
+    if (topBtnPlay) topBtnPlay.innerHTML = '<span>▶</span> PLAY DEMO CALL';
+    const btnStart = document.getElementById('btn-start-call');
+    if (btnStart) btnStart.innerHTML = '<span>●</span> LIVE MIC';
+    const topBtnStart = document.getElementById('top-start-call-btn');
+    if (topBtnStart) topBtnStart.innerHTML = '<span>●</span> LIVE MIC';
+  }
+
+  function endCall() {
+    if (!socket) return;
+    socket.emit('command', { type: 'end_call' });
+    stopSampleAudio();
+
+    // Clean up microphone hardware access
+    if (window._activeMicStream) {
+      window._activeMicStream.getTracks().forEach(t => t.stop());
+      window._activeMicStream = null;
+    }
+    if (window._activeAudioCtx) {
+      window._activeAudioCtx.close().catch(() => {});
+      window._activeAudioCtx = null;
+    }
+    if (window._speechRec) {
+      try { window._speechRec.stop(); } catch(_) {}
+      window._speechRec = null;
+    }
+
+    resetControlButtons();
+    document.getElementById('call-status-badge').textContent = 'CALL STATE: TERMINATING...';
+    document.getElementById('bus-status').textContent = 'LINE #01 FLUSHING BUFFER';
+  }
+
+  function resetCall() {
+    if (!socket) return;
+    socket.emit('command', { type: 'reset' });
+    window.location.reload();
+  }
+
+  function useSuggestedReply() {
+    if (!currentSuggestedReply || !socket) return;
+
+    if (!isCallActive) {
+      showToast('Start a call before using a reply');
+      return;
+    }
+
+    // Button visual pulse
+    const btn = document.getElementById('insert-script-btn');
+    const useBtn = document.getElementById('btn-use-reply');
+    if (btn) btn.innerHTML = '<span>&#10003;</span> INJECTED — SPEAKING VOICE...';
+    if (useBtn) useBtn.innerHTML = '<span>&#10003;</span> INJECTED';
+    setTimeout(() => {
+      if (btn) btn.innerHTML = '<span>&#10140;</span> INSERT INTO RESPONSE';
+      if (useBtn) useBtn.innerHTML = '<span>&#9205;</span> USE REPLY';
+    }, 2000);
+
+    const text = currentSuggestedReply;
+    socket.emit('command', { type: 'use_reply', text });
+
+    // One-button flow: after injecting the reply into the agent response,
+    // immediately route the SAME answer through TTS (client's language).
+    synthesizeReply();
+  }
+
+  function synthesizeReply() {
+    if (!currentSuggestedReply || !socket) return;
+
+    ttsRequestSeq += 1;
+    const requestId = ttsRequestSeq;
+    serverTtsResponded = false;
+    ttsSentAt = Date.now();
+    setStageChip('chip-tts', 'TTS...', true);
+    if (ttsFallbackTimer) { clearTimeout(ttsFallbackTimer); ttsFallbackTimer = null; }
+    if ('speechSynthesis' in window) {
+      try { window.speechSynthesis.cancel(); } catch (_) {}
+    }
+
+    // Voice track speaks in the CLIENT's language; screen stays English
+    socket.emit('command', {
+      type: 'synthesize',
+      text: currentSuggestedReply,
+      requestId,
+      language: currentClientLanguage
+    });
+
+    // Fallback only on explicit failure or after 6s with no server response.
+    ttsFallbackTimer = setTimeout(() => {
+      if (!serverTtsResponded) {
+        console.log('[tts] server TTS timed out; using browser speech fallback');
+        speakBrowserTts(requestId);
+      }
+    }, 6000);
+  }
+
+  function copyMemo() {
+    const memo = `VOXRELAY AGENTCOPILOT MEMO\nCall ID: ${currentCallId || 'VX-INC-DEMO-01'}\nAgent: Priya Sharma\nCategory: CARD_SERVICES / FEE_WAIVER\nSuggested Reply: ${currentSuggestedReply}`;
+    navigator.clipboard.writeText(memo);
+    const btn = document.getElementById('copy-memo-btn');
+    btn.innerHTML = '<span class="material-symbols-outlined text-[14px]">check</span> COPIED!';
+    setTimeout(() => {
+      btn.innerHTML = '<span class="material-symbols-outlined text-[14px]">content_copy</span> COPY RAW MD';
+    }, 1500);
+  }
+
+  let streamPaused = false;
+  function togglePause() {
+    streamPaused = !streamPaused;
+    const btn = document.getElementById('stream-toggle-btn');
+    if (btn) btn.textContent = streamPaused ? 'RESUME STREAM' : 'PAUSE STREAM';
+    Object.keys(sampleAudios).forEach(sp => {
+      const a = sampleAudios[sp];
+      if (a) {
+        try {
+          if (streamPaused) a.pause();
+          else a.play().catch(() => {});
+        } catch (_) {}
+      }
+    });
+  }
+
+  // Modal interactions
+  const reportModal = document.getElementById('report-modal');
+  document.getElementById('view-report-btn').addEventListener('click', () => {
+    // If no call finished yet, populate sample data so modal isn't blank
+    if (!currentCallId) {
+      document.getElementById('modal-report-serial').textContent = 'REPORT SERIAL: VX-SAMPLE-01';
+      document.getElementById('modal-caller').textContent = 'Rajesh Sharma (+91 ••••• ••210)';
+      document.getElementById('modal-duration').textContent = '00:01:30.0';
+      document.getElementById('modal-compliance').textContent = '100%';
+      document.getElementById('modal-ratio').textContent = '1.18';
+      document.getElementById('modal-dead-air').textContent = '3.8%';
+      document.getElementById('modal-escalated').textContent = 'NO • PASSED';
+      const mb = document.getElementById('modal-bullets');
+      mb.innerHTML = `
+        <li>Customer inquired about unblock charges for card declined in Munich.</li>
+        <li>Agent verified customer identity via DOB and last 4 card digits.</li>
+        <li>Agent disclosed recording compliance and fee waiver policy for annual spend &gt; 1L.</li>
+        <li>Customer confirmed fee waiver and resolution TAT of 4 business hours.</li>
+      `;
+    }
+    reportModal.classList.remove('hidden');
+  });
+  document.getElementById('close-modal-btn').addEventListener('click', () => reportModal.classList.add('hidden'));
+  document.getElementById('close-modal-footer-btn').addEventListener('click', () => reportModal.classList.add('hidden'));
+
+  // Clock
+  setInterval(() => {
+    const now = new Date();
+    document.getElementById('utc-clock').textContent = 'UTC ' + now.toISOString().replace('T', ' ').replace('Z', '').slice(11, 23);
+  }, 100);
+
+  function escapeHtml(str) {
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  // Explicitly export click handlers to window for inline onclick attributes
+  window.startSampleCall = startSampleCall;
+  window.startLiveCall = startLiveCall;
+  window.endCall = endCall;
+  window.resetCall = resetCall;
+  window.useSuggestedReply = useSuggestedReply;
+  window.copyMemo = copyMemo;
+  window.togglePause = togglePause;
+  window.toggleSampleAudio = toggleSampleAudio;
+  window.speakAsCustomer = speakAsCustomer;
+</script>
+</body></html>
+

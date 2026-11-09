@@ -1,0 +1,68 @@
+{
+  "id": "Sample - 01",
+  "durationS": 120,
+  "language": "Hinglish",
+  "speakersCount": 4,
+  "transcript": [
+    {
+      "at_s": 2,
+      "speaker": "agent",
+      "text": "Good afternoon Mr. Sharma, thank you for calling Priority Bank Line. My name is Priya.",
+      "confidence": 0.99
+    },
+    {
+      "at_s": 8,
+      "speaker": "agent",
+      "text": "Please note this call is being recorded for quality and training purposes.",
+      "confidence": 0.98
+    },
+    {
+      "at_s": 14,
+      "speaker": "agent",
+      "text": "To proceed with your card services, please verify your date of birth and the last 4 digits of your card.",
+      "confidence": 0.99
+    },
+    {
+      "at_s": 22,
+      "speaker": "customer",
+      "text": "Yes, date of birth is 15th August 1984, and card last four digits are 4581.",
+      "confidence": 0.97
+    },
+    {
+      "at_s": 30,
+      "speaker": "customer",
+      "text": "My card was declined in Munich this morning. Card unblock karane ke kitne charges lagenge? Fees kya lagega?",
+      "confidence": 0.98
+    },
+    {
+      "at_s": 42,
+      "speaker": "agent",
+      "text": "Sir, unblock charges are 250 rupees, but agar aapka annual spend 1 lakh se upar hai toh unblock charges waive ho jayenge with zero charges.",
+      "confidence": 0.99
+    },
+    {
+      "at_s": 54,
+      "speaker": "customer",
+      "text": "Acha fee waive ho jayega. But card kab tak unblock hoga? What is the TAT, kitna time lagega?",
+      "confidence": 0.97
+    },
+    {
+      "at_s": 64,
+      "speaker": "agent",
+      "text": "Aapka card 24 working hours ke andar unblock ho jayega, and request raise hone par aur complete hone par SMS notification bhi milega.",
+      "confidence": 0.99
+    },
+    {
+      "at_s": 76,
+      "speaker": "customer",
+      "text": "Great, please unblock the international travel lock on this card immediately.",
+      "confidence": 0.96
+    },
+    {
+      "at_s": 84,
+      "speaker": "agent",
+      "text": "I have submitted the unblock request. In case of any further queries, our grievance escalation window is always available for you. Have a great day!",
+      "confidence": 0.99
+    }
+  ]
+}

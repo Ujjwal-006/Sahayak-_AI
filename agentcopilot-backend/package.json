@@ -1,0 +1,17 @@
+{
+  "name": "agentcopilot-backend",
+  "version": "1.0.0",
+  "description": "AgentCopilot Backend Monorepo - CallEngine (Phase 1) + SaaS Backend (Phase 5)",
+  "scripts": {
+    "start:saas": "cd saas-backend && npm start",
+    "start:call-engine": "cd call-engine && npm start",
+    "db:seed": "cd saas-backend && npm run db:seed",
+    "db:push": "cd saas-backend && npm run db:push",
+    "transcribe-samples": "cd call-engine && npm run transcribe-samples",
+    "test": "cd call-engine && npx tsx ../test-backend.ts"
+  },
+  "keywords": ["gnani-ai", "prisma-asr", "timbre-tts", "socket.io", "call-center", "copilot"],
+  "author": "Gnani AI Internship Submission",
+  "license": "MIT"
+}
+

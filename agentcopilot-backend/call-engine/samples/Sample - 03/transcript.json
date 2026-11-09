@@ -1,0 +1,50 @@
+{
+  "id": "Sample - 03",
+  "durationS": 120,
+  "language": "Hinglish",
+  "speakersCount": 2,
+  "transcript": [
+    {
+      "at_s": 2,
+      "speaker": "agent",
+      "text": "Hello, thank you for calling. This call is being recorded for quality and training.",
+      "confidence": 0.99
+    },
+    {
+      "at_s": 9,
+      "speaker": "agent",
+      "text": "Please verify identity: date of birth and last 4 digits of your credit card.",
+      "confidence": 0.98
+    },
+    {
+      "at_s": 16,
+      "speaker": "customer",
+      "text": "I am calling because charges lagega on my international roaming transaction.",
+      "confidence": 0.96
+    },
+    {
+      "at_s": 25,
+      "speaker": "agent",
+      "text": "We will waive unblock charges and ensure zero charges under fee waiver policy.",
+      "confidence": 0.99
+    },
+    {
+      "at_s": 36,
+      "speaker": "customer",
+      "text": "What is the turnaround time for SMS confirmation?",
+      "confidence": 0.95
+    },
+    {
+      "at_s": 46,
+      "speaker": "agent",
+      "text": "Standard turnaround time is 24 working hours, with immediate SMS update.",
+      "confidence": 0.99
+    },
+    {
+      "at_s": 56,
+      "speaker": "agent",
+      "text": "Everything is verified and sorted for you today.",
+      "confidence": 0.98
+    }
+  ]
+}

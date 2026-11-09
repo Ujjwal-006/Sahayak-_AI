@@ -1,0 +1,26 @@
+node:events:505
+    throw er; // Unhandled 'error' event
+    ^
+
+Error: listen EADDRINUSE: address already in use :::3003
+    at Server.setupListenHandle [as _listen2] (node:net:2324:16)
+    at listenInCluster (node:net:2433:12)
+    at Server.listen (node:net:2558:7)
+    at Server.attach (C:\Users\ujjwa\OneDrive\Desktop\ujjwal\g ai\agentcopilot-backend\call-engine\node_modules\socket.io\dist\index.js:241:17)
+    at new Server (C:\Users\ujjwa\OneDrive\Desktop\ujjwal\g ai\agentcopilot-backend\call-engine\node_modules\socket.io\dist\index.js:138:18)
+    at path (C:\Users\ujjwa\OneDrive\Desktop\ujjwal\g ai\agentcopilot-backend\call-engine\index.ts:14:12)
+    at Object.<anonymous> (C:\Users\ujjwa\OneDrive\Desktop\ujjwal\g ai\agentcopilot-backend\call-engine\index.ts:111:2)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object.transformer (C:\Users\ujjwa\OneDrive\Desktop\ujjwal\g ai\agentcopilot-backend\call-engine\node_modules\tsx\dist\register-B1c7OH6V.cjs:22:2188)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:2412:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 3003
+}
+
+Node.js v24.20.0
